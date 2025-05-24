@@ -20,7 +20,7 @@ const CategoryCard: React.FC<CategoryCardProps> = ({
   trend 
 }) => {
   return (
-    <Card className="bg-white/10 backdrop-blur-md border-white/20 hover:bg-white/15 transition-all duration-200">
+    <Card className="bg-white border-gray-200 shadow-sm hover:shadow-md transition-shadow duration-200">
       <CardContent className="p-4">
         <div className="flex items-center justify-between mb-3">
           <div className="flex items-center gap-3">
@@ -28,10 +28,10 @@ const CategoryCard: React.FC<CategoryCardProps> = ({
               className="w-4 h-4 rounded-full" 
               style={{ backgroundColor: color }}
             />
-            <h3 className="text-white font-medium">{name}</h3>
+            <h3 className="text-gray-900 font-medium">{name}</h3>
           </div>
           {trend && (
-            <div className={`flex items-center gap-1 ${trend === 'up' ? 'text-red-400' : 'text-green-400'}`}>
+            <div className={`flex items-center gap-1 ${trend === 'up' ? 'text-red-500' : 'text-green-500'}`}>
               {trend === 'up' ? <TrendingUp className="h-4 w-4" /> : <TrendingDown className="h-4 w-4" />}
               {percentage && <span className="text-xs">{percentage}%</span>}
             </div>
@@ -39,8 +39,8 @@ const CategoryCard: React.FC<CategoryCardProps> = ({
         </div>
         
         <div className="space-y-2">
-          <p className="text-2xl font-bold text-white">₹{amount.toLocaleString()}</p>
-          <div className="w-full bg-white/20 rounded-full h-2">
+          <p className="text-2xl font-bold text-gray-900">₹{amount.toLocaleString()}</p>
+          <div className="w-full bg-gray-200 rounded-full h-2">
             <div 
               className="h-2 rounded-full transition-all duration-300"
               style={{ 
@@ -49,7 +49,7 @@ const CategoryCard: React.FC<CategoryCardProps> = ({
               }}
             />
           </div>
-          <p className="text-xs text-blue-200">Budget: ₹5,000</p>
+          <p className="text-xs text-gray-500">Budget: ₹5,000</p>
         </div>
       </CardContent>
     </Card>
