@@ -3,9 +3,9 @@ import React, { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { PieChart, Pie, Cell, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
-import { TrendingUp, TrendingDown, Plus, Wallet, Target, Calendar } from 'lucide-react';
+import { TrendingUp, TrendingDown, Plus, Target, Calendar, ArrowRight } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import ExpenseInput from '@/components/ExpenseInput';
-import CategoryCard from '@/components/CategoryCard';
 import TransactionList from '@/components/TransactionList';
 import Header from '@/components/Header';
 
@@ -19,6 +19,7 @@ interface Transaction {
 }
 
 const Index = () => {
+  const navigate = useNavigate();
   const [expenses, setExpenses] = useState<Transaction[]>([
     { id: 1, description: 'Lunch at restaurant', amount: 120, category: 'Food', date: new Date(), type: 'expense' },
     { id: 2, description: 'Uber ride home', amount: 300, category: 'Transport', date: new Date(), type: 'expense' },
@@ -54,72 +55,22 @@ const Index = () => {
     <div className="min-h-screen bg-background">
       <Header />
       
-      <div className="container mx-auto px-4 py-8 space-y-8 max-w-7xl">
-        {/* Balance Overview */}
+      <div className="container mx-auto px-4 py-6 space-y-6 max-w-7xl">
+        {/* Mobile-first Balance Overview */}
         <div className="text-center space-y-4">
           <div className="space-y-2">
-            <h2 className="text-3xl font-bold text-foreground">Today's Balance</h2>
-            <p className={`text-5xl font-bold ${balance >= 0 ? 'text-emerald-600 dark:text-emerald-400' : 'text-red-600 dark:text-red-400'}`}>
+            <h2 className="text-2xl md:text-3xl font-bold text-foreground">Available Funds</h2>
+            <p className={`text-4xl md:text-5xl font-bold ${balance >= 0 ? 'text-emerald-600 dark:text-emerald-400' : 'text-red-600 dark:text-red-400'}`}>
               ৳{balance.toLocaleString()}
             </p>
-            <p className="text-muted-foreground">Track your expenses with smart insights</p>
+            <p className="text-muted-foreground text-sm">Current balance</p>
           </div>
         </div>
 
-        {/* Quick Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <Card className="border-border/50 shadow-sm hover:shadow-md transition-shadow">
-            <CardHeader className="pb-3">
-              <CardTitle className="text-lg flex items-center gap-2 text-foreground">
-                <div className="p-2 bg-emerald-100 dark:bg-emerald-900/30 rounded-lg">
-                  <TrendingUp className="h-5 w-5 text-emerald-600 dark:text-emerald-400" />
-                </div>
-                Total Income
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-2xl font-bold text-emerald-600 dark:text-emerald-400">৳{totalIncome.toLocaleString()}</p>
-              <p className="text-sm text-muted-foreground mt-1">This month</p>
-            </CardContent>
-          </Card>
-
-          <Card className="border-border/50 shadow-sm hover:shadow-md transition-shadow">
-            <CardHeader className="pb-3">
-              <CardTitle className="text-lg flex items-center gap-2 text-foreground">
-                <div className="p-2 bg-red-100 dark:bg-red-900/30 rounded-lg">
-                  <TrendingDown className="h-5 w-5 text-red-600 dark:text-red-400" />
-                </div>
-                Total Expenses
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-2xl font-bold text-red-600 dark:text-red-400">৳{totalExpenses.toLocaleString()}</p>
-              <p className="text-sm text-muted-foreground mt-1">This month</p>
-            </CardContent>
-          </Card>
-
-          <Card className="border-border/50 shadow-sm hover:shadow-md transition-shadow">
-            <CardHeader className="pb-3">
-              <CardTitle className="text-lg flex items-center gap-2 text-foreground">
-                <div className="p-2 bg-blue-100 dark:bg-blue-900/30 rounded-lg">
-                  <Wallet className="h-5 w-5 text-blue-600 dark:text-blue-400" />
-                </div>
-                Available Funds
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className={`text-2xl font-bold ${balance >= 0 ? 'text-emerald-600 dark:text-emerald-400' : 'text-red-600 dark:text-red-400'}`}>
-                ৳{balance.toLocaleString()}
-              </p>
-              <p className="text-sm text-muted-foreground mt-1">Current balance</p>
-            </CardContent>
-          </Card>
-        </div>
-
-        {/* Expense Input */}
+        {/* Expense Input - Priority for mobile */}
         <Card className="border-border/50 shadow-sm">
-          <CardHeader>
-            <CardTitle className="text-foreground flex items-center gap-2">
+          <CardHeader className="pb-4">
+            <CardTitle className="text-foreground flex items-center gap-2 text-lg">
               <div className="p-2 bg-primary/10 rounded-lg">
                 <Plus className="h-5 w-5 text-primary" />
               </div>
@@ -131,8 +82,64 @@ const Index = () => {
           </CardContent>
         </Card>
 
-        {/* Charts Section */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {/* Quick Stats - Compact for mobile */}
+        <div className="grid grid-cols-2 gap-3 md:gap-6">
+          <Card className="border-border/50 shadow-sm">
+            <CardHeader className="pb-2 md:pb-3">
+              <CardTitle className="text-sm md:text-lg flex items-center gap-2 text-foreground">
+                <div className="p-1.5 md:p-2 bg-emerald-100 dark:bg-emerald-900/30 rounded-lg">
+                  <TrendingUp className="h-3 w-3 md:h-5 md:w-5 text-emerald-600 dark:text-emerald-400" />
+                </div>
+                <span className="hidden md:inline">Total Income</span>
+                <span className="md:hidden">Income</span>
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="pt-0">
+              <p className="text-lg md:text-2xl font-bold text-emerald-600 dark:text-emerald-400">৳{totalIncome.toLocaleString()}</p>
+              <p className="text-xs text-muted-foreground mt-1">This month</p>
+            </CardContent>
+          </Card>
+
+          <Card className="border-border/50 shadow-sm">
+            <CardHeader className="pb-2 md:pb-3">
+              <CardTitle className="text-sm md:text-lg flex items-center gap-2 text-foreground">
+                <div className="p-1.5 md:p-2 bg-red-100 dark:bg-red-900/30 rounded-lg">
+                  <TrendingDown className="h-3 w-3 md:h-5 md:w-5 text-red-600 dark:text-red-400" />
+                </div>
+                <span className="hidden md:inline">Total Expenses</span>
+                <span className="md:hidden">Expenses</span>
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="pt-0">
+              <p className="text-lg md:text-2xl font-bold text-red-600 dark:text-red-400">৳{totalExpenses.toLocaleString()}</p>
+              <p className="text-xs text-muted-foreground mt-1">This month</p>
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* Recent Transactions with navigation */}
+        <Card className="border-border/50 shadow-sm">
+          <CardHeader>
+            <div className="flex items-center justify-between">
+              <CardTitle className="text-foreground">Recent Transactions</CardTitle>
+              <Button 
+                variant="ghost" 
+                size="sm" 
+                onClick={() => navigate('/transactions')}
+                className="text-primary hover:text-primary/80"
+              >
+                View All
+                <ArrowRight className="h-4 w-4 ml-1" />
+              </Button>
+            </div>
+          </CardHeader>
+          <CardContent>
+            <TransactionList transactions={expenses.slice(0, 3)} />
+          </CardContent>
+        </Card>
+
+        {/* Charts Section - Hidden on small mobile */}
+        <div className="hidden md:grid md:grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Category Breakdown */}
           <Card className="border-border/50 shadow-sm">
             <CardHeader>
@@ -209,16 +216,6 @@ const Index = () => {
             </CardContent>
           </Card>
         </div>
-
-        {/* Recent Transactions */}
-        <Card className="border-border/50 shadow-sm">
-          <CardHeader>
-            <CardTitle className="text-foreground">Recent Transactions</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <TransactionList transactions={expenses} />
-          </CardContent>
-        </Card>
       </div>
     </div>
   );
