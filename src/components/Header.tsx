@@ -12,7 +12,7 @@ const Header: React.FC = () => {
   const location = useLocation();
 
   const navItems = [
-    { name: 'Dashboard', path: '/' },
+    { name: 'Dashboard', path: '/dashboard' },
     { name: 'Transactions', path: '/transactions' },
     { name: 'Profile', path: '/profile' },
   ];
@@ -24,7 +24,7 @@ const Header: React.FC = () => {
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
         <div className="flex items-center space-x-4">
           <button
-            onClick={() => navigate('/')}
+            onClick={() => navigate('/dashboard')}
             className="flex items-center space-x-2 hover:opacity-80 transition-opacity"
           >
             <div className="w-8 h-8 bg-gradient-to-r from-emerald-500 to-teal-600 rounded-lg flex items-center justify-center">
