@@ -1,7 +1,7 @@
-
 import React from 'react';
 import { Plus, Minus } from 'lucide-react';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
+import { Button } from '@/components/ui/button';
 
 const LandingFAQ: React.FC = () => {
   const [openItems, setOpenItems] = React.useState<number[]>([0]);
