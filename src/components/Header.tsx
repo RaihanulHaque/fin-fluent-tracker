@@ -13,6 +13,7 @@ const Header: React.FC = () => {
 
   // Show different navigation based on current page
   const isLandingPage = location.pathname === '/';
+  const isEnglishLanding = location.pathname === '/dashboard-eng';
 
   const landingNavItems = [
     { name: 'Features', href: '#features' },
@@ -43,15 +44,25 @@ const Header: React.FC = () => {
             onClick={() => navigate('/')}
             className="flex items-center space-x-2 hover:opacity-80 transition-opacity"
           >
-            <div className="w-8 h-8 bg-gradient-to-r from-emerald-500 to-teal-600 rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-sm">হি</span>
-            </div>
-            <h1 className="text-xl font-semibold text-foreground">Hishab</h1>
+            {isEnglishLanding ? (
+              <img 
+                src="/lovable-uploads/7646c7b0-a017-4c5a-b29a-40cab7e09e7b.png" 
+                alt="Prompt Logo" 
+                className="w-8 h-8"
+              />
+            ) : (
+              <div className="w-8 h-8 bg-gradient-to-r from-emerald-500 to-teal-600 rounded-lg flex items-center justify-center">
+                <span className="text-white font-bold text-sm">হি</span>
+              </div>
+            )}
+            <h1 className="text-xl font-semibold text-foreground">
+              {isEnglishLanding ? 'Prompt' : 'Hishab'}
+            </h1>
           </button>
           
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-6 ml-8">
-            {isLandingPage ? (
+            {(isLandingPage || isEnglishLanding) ? (
               landingNavItems.map((item) => (
                 <button
                   key={item.href}
@@ -93,7 +104,7 @@ const Header: React.FC = () => {
             )}
           </Button>
           
-          {isLandingPage ? (
+          {(isLandingPage || isEnglishLanding) ? (
             <div className="hidden md:flex items-center space-x-2">
               <Button 
                 variant="ghost" 
@@ -120,7 +131,7 @@ const Header: React.FC = () => {
               </SheetTrigger>
               <SheetContent side="right" className="w-64">
                 <nav className="flex flex-col space-y-4 mt-8">
-                  {isLandingPage ? (
+                  {(isLandingPage || isEnglishLanding) ? (
                     <>
                       {landingNavItems.map((item) => (
                         <button
