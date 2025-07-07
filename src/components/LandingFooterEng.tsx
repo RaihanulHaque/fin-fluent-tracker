@@ -1,8 +1,11 @@
 
 import React from 'react';
 import { Mail, Phone, MapPin } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 const LandingFooterEng: React.FC = () => {
+  const navigate = useNavigate();
+
   return (
     <footer className="bg-gray-900 text-white py-16">
       <div className="max-w-7xl mx-auto px-4">
@@ -78,7 +81,12 @@ const LandingFooterEng: React.FC = () => {
             © 2024 Hishab. All rights reserved.
           </p>
           <div className="flex space-x-6 mt-4 md:mt-0">
-            <a href="#" className="text-gray-400 hover:text-white transition-colors">Privacy Policy</a>
+            <button 
+              onClick={() => navigate('/privacy-policy')}
+              className="text-gray-400 hover:text-white transition-colors"
+            >
+              Privacy Policy
+            </button>
             <a href="#" className="text-gray-400 hover:text-white transition-colors">Terms of Service</a>
             <a href="#" className="text-gray-400 hover:text-white transition-colors">Cookie Policy</a>
           </div>

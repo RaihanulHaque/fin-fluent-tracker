@@ -1,21 +1,12 @@
 
 import React from 'react';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, Download, Smartphone, Trash2 } from 'lucide-react';
+import { ArrowRight, Download, Smartphone } from 'lucide-react';
 
 const LandingHeroEng: React.FC = () => {
   return (
     <section className="relative bg-gradient-to-br from-emerald-50 via-teal-50 to-cyan-50 dark:from-emerald-950 dark:via-teal-950 dark:to-cyan-950 min-h-screen flex items-center">
       <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/10 to-teal-500/10"></div>
-      
-      {/* Delete Button - Top Right Corner */}
-      <Button
-        variant="ghost"
-        size="icon"
-        className="absolute top-20 right-4 z-10 text-gray-400 hover:text-gray-600 dark:text-gray-600 dark:hover:text-gray-400"
-      >
-        <Trash2 className="w-4 h-4" />
-      </Button>
 
       <div className="relative max-w-7xl mx-auto px-4 py-24">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -30,14 +21,14 @@ const LandingHeroEng: React.FC = () => {
               </div>
               
               <h1 className="text-5xl lg:text-7xl font-bold text-gray-900 dark:text-white leading-tight">
-                Prompt Your Way to
+                Smart Way to
                 <span className="bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">
-                  {" "}Financial Freedom
+                  {" "}Track Your Money
                 </span>
               </h1>
               
               <p className="text-xl lg:text-2xl text-gray-600 dark:text-gray-400 leading-relaxed max-w-2xl">
-                Experience the future of expense tracking with Prompt. Simply tell us what you spent, and our AI handles the rest. Smart categorization, instant insights, effortless management.
+                Experience the future of expense tracking with Hishab. Simply tell us what you spent, and our AI handles the rest. Smart categorization, instant insights, effortless management.
               </p>
             </div>
 
@@ -88,10 +79,10 @@ const LandingHeroEng: React.FC = () => {
                     <div className="flex items-center space-x-2">
                       <img 
                         src="/lovable-uploads/7646c7b0-a017-4c5a-b29a-40cab7e09e7b.png" 
-                        alt="Prompt Logo" 
+                        alt="Hishab Logo" 
                         className="w-6 h-6"
                       />
-                      <div className="text-white text-sm font-medium">Prompt Finance</div>
+                      <div className="text-white text-sm font-medium">Hishab Finance</div>
                     </div>
                   </div>
                   

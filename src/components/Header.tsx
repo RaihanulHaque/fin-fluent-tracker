@@ -47,7 +47,7 @@ const Header: React.FC = () => {
             {isEnglishLanding ? (
               <img 
                 src="/lovable-uploads/7646c7b0-a017-4c5a-b29a-40cab7e09e7b.png" 
-                alt="Prompt Logo" 
+                alt="Hishab Logo" 
                 className="w-8 h-8"
               />
             ) : (
@@ -55,40 +55,43 @@ const Header: React.FC = () => {
                 <span className="text-white font-bold text-sm">হি</span>
               </div>
             )}
-            <h1 className="text-xl font-semibold text-foreground">
-              {isEnglishLanding ? 'Prompt' : 'Hishab'}
-            </h1>
+            <h1 className="text-xl font-semibold text-foreground">Hishab</h1>
           </button>
-          
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-6 ml-8">
-            {(isLandingPage || isEnglishLanding) ? (
-              landingNavItems.map((item) => (
-                <button
-                  key={item.href}
-                  onClick={() => scrollToSection(item.href)}
-                  className="text-sm font-medium transition-colors hover:text-primary text-muted-foreground"
-                >
-                  {item.name}
-                </button>
-              ))
-            ) : (
-              appNavItems.map((item) => (
-                <button
-                  key={item.path}
-                  onClick={() => navigate(item.path)}
-                  className={`text-sm font-medium transition-colors hover:text-primary ${
-                    isActive(item.path)
-                      ? 'text-primary border-b-2 border-primary pb-4'
-                      : 'text-muted-foreground'
-                  }`}
-                >
-                  {item.name}
-                </button>
-              ))
-            )}
-          </nav>
         </div>
+        
+        {/* Centered Desktop Navigation */}
+        {(isLandingPage || isEnglishLanding) && (
+          <nav className="hidden md:flex items-center space-x-8 absolute left-1/2 transform -translate-x-1/2">
+            {landingNavItems.map((item) => (
+              <button
+                key={item.href}
+                onClick={() => scrollToSection(item.href)}
+                className="text-sm font-medium transition-colors hover:text-primary text-muted-foreground"
+              >
+                {item.name}
+              </button>
+            ))}
+          </nav>
+        )}
+        
+        {/* App Navigation for dashboard pages */}
+        {!isLandingPage && !isEnglishLanding && (
+          <nav className="hidden md:flex items-center space-x-6 ml-8">
+            {appNavItems.map((item) => (
+              <button
+                key={item.path}
+                onClick={() => navigate(item.path)}
+                className={`text-sm font-medium transition-colors hover:text-primary ${
+                  isActive(item.path)
+                    ? 'text-primary border-b-2 border-primary pb-4'
+                    : 'text-muted-foreground'
+                }`}
+              >
+                {item.name}
+              </button>
+            ))}
+          </nav>
+        )}
 
         <div className="flex items-center space-x-2">
           <Button

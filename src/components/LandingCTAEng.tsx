@@ -17,19 +17,19 @@ const LandingCTAEng: React.FC = () => {
         <div className="mb-8">
           <img 
             src="/lovable-uploads/7646c7b0-a017-4c5a-b29a-40cab7e09e7b.png" 
-            alt="Prompt Logo" 
+            alt="Hishab Logo" 
             className="w-16 h-16 mx-auto mb-6"
           />
         </div>
         
         <h2 className="text-4xl lg:text-6xl font-bold text-white mb-8 leading-tight">
-          Ready to Prompt Your
+          Ready to Track Your
           <br />
           <span className="text-emerald-100">Financial Success?</span>
         </h2>
         
         <p className="text-xl text-emerald-100 mb-12 max-w-3xl mx-auto leading-relaxed">
-          Join thousands of users who've simplified their financial lives with Prompt. 
+          Join thousands of users who've simplified their financial lives with Hishab. 
           Start your journey to smarter money management today – it's free to begin.
         </p>
         
@@ -39,7 +39,7 @@ const LandingCTAEng: React.FC = () => {
             className="bg-white text-emerald-600 hover:bg-gray-100 px-10 py-6 text-xl font-bold rounded-2xl shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-105"
           >
             <MessageSquare className="w-6 h-6 mr-3" />
-            Start Prompting
+            Start Tracking
             <ArrowRight className="w-6 h-6 ml-3" />
           </Button>
           
