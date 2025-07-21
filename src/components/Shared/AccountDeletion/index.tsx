@@ -4,21 +4,57 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Trash2, Mail, AlertTriangle } from "lucide-react";
 import { toast } from "sonner";
+import { supabase } from "@/integrations/supabase/client";
 
 const AccountDeletion: React.FC = () => {
   const { t } = useTranslation();
   const [email, setEmail] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
-  const handleDeleteRequest = () => {
+  const handleDeleteRequest = async () => {
     if (!email) {
       toast.error(t("accountDeletion.emailRequired"));
       return;
     }
 
-    // Simulate sending deletion email
-    setIsSubmitted(true);
-    toast.success(t("accountDeletion.successMessage"));
+    // Validate email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      toast.error("Please enter a valid email address");
+      return;
+    }
+
+    setIsLoading(true);
+
+    try {
+      // Call the Supabase Edge Function to send confirmation email
+      const { data, error } = await supabase.functions.invoke(
+        "delete-user-account",
+        {
+          body: {
+            email: email,
+            action: "send_confirmation",
+          },
+        }
+      );
+
+      if (error) {
+        console.error("Error sending confirmation email:", error);
+        toast.error("Failed to send confirmation email. Please try again.");
+        return;
+      }
+
+      // Show success message
+      toast.success(t("accountDeletion.successMessage"));
+      setIsSubmitted(true);
+      setEmail("");
+    } catch (error) {
+      console.error("Error:", error);
+      toast.error("Failed to send confirmation email. Please try again.");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   if (isSubmitted) {
@@ -61,9 +97,10 @@ const AccountDeletion: React.FC = () => {
           variant="destructive"
           size="sm"
           className="whitespace-nowrap"
+          disabled={isLoading}
         >
           <Trash2 className="w-4 h-4 mr-1" />
-          {t("accountDeletion.deleteButton")}
+          {isLoading ? "Sending..." : t("accountDeletion.deleteButton")}
         </Button>
       </div>
     </div>

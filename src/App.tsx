@@ -13,6 +13,7 @@ import Signup from "./pages/Signup";
 import Profile from "./pages/Profile";
 import Transactions from "./pages/Transactions";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
+import ConfirmAccountDeletion from "./pages/ConfirmAccountDeletion";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -21,10 +22,6 @@ const App = () => {
   const { t, i18n } = useTranslation();
   return (
     <>
-      <div style={{ position: "fixed", top: 10, right: 10, zIndex: 9999 }}>
-        <button onClick={() => i18n.changeLanguage("en")}>English</button>
-        <button onClick={() => i18n.changeLanguage("bn")}>বাংলা</button>
-      </div>
       <QueryClientProvider client={queryClient}>
         <ThemeProvider>
           <TooltipProvider>
@@ -40,6 +37,10 @@ const App = () => {
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/transactions" element={<Transactions />} />
                 <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+                <Route
+                  path="/confirm-account-deletion"
+                  element={<ConfirmAccountDeletion />}
+                />
                 {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                 <Route path="*" element={<NotFound />} />
               </Routes>

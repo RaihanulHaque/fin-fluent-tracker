@@ -261,10 +261,10 @@
     "emailPlaceholder": "Your email address",
     "deleteButton": "Delete",
     "emailRequired": "Email address is required",
-    "successMessage": "Delete link sent to your email",
+    "successMessage": "Confirmation email sent successfully",
     "emailSent": {
-      "title": "Email Sent",
-      "description": "Click the link sent to your email to delete your account."
+      "title": "Confirmation Email Sent",
+      "description": "Check your email and click the confirmation link to delete your account."
     }
   }
 }
