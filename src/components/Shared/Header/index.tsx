@@ -12,20 +12,11 @@ const Header: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  // Show different navigation based on current page
-  const isLandingPage = location.pathname === "/";
-  const isEnglishLanding = location.pathname === "/dashboard-eng";
-
   const landingNavItems = [
     { name: t("header.navigation.features"), href: "#features" },
     { name: t("header.navigation.pricing"), href: "#pricing" },
     { name: t("header.navigation.faq"), href: "#faq" },
-  ];
-
-  const appNavItems = [
-    { name: t("header.navigation.dashboard"), path: "/dashboard" },
-    { name: t("header.navigation.transactions"), path: "/transactions" },
-    { name: t("header.navigation.profile"), path: "/profile" },
+    { name: t("header.navigation.account-delete"), href: "/account-deletion" },
   ];
 
   const toggleLanguage = () => {
@@ -33,12 +24,14 @@ const Header: React.FC = () => {
     i18n.changeLanguage(newLang);
   };
 
-  const isActive = (path: string) => location.pathname === path;
-
   const scrollToSection = (href: string) => {
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
+    if (href.startsWith("#")) {
+      const element = document.querySelector(href);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    } else {
+      navigate(href);
     }
   };
 
@@ -61,38 +54,17 @@ const Header: React.FC = () => {
         </div>
 
         {/* Centered Desktop Navigation */}
-        {(isLandingPage || isEnglishLanding) && (
-          <nav className="hidden md:flex items-center space-x-8 absolute left-1/2 transform -translate-x-1/2">
-            {landingNavItems.map((item) => (
-              <button
-                key={item.href}
-                onClick={() => scrollToSection(item.href)}
-                className="text-sm font-medium transition-colors hover:text-primary text-muted-foreground"
-              >
-                {item.name}
-              </button>
-            ))}
-          </nav>
-        )}
-
-        {/* App Navigation for dashboard pages */}
-        {!isLandingPage && !isEnglishLanding && (
-          <nav className="hidden md:flex items-center space-x-6 ml-8">
-            {appNavItems.map((item) => (
-              <button
-                key={item.path}
-                onClick={() => navigate(item.path)}
-                className={`text-sm font-medium transition-colors hover:text-primary ${
-                  isActive(item.path)
-                    ? "text-primary border-b-2 border-primary pb-4"
-                    : "text-muted-foreground"
-                }`}
-              >
-                {item.name}
-              </button>
-            ))}
-          </nav>
-        )}
+        <nav className="hidden md:flex items-center space-x-8 absolute left-1/2 transform -translate-x-1/2">
+          {landingNavItems.map((item) => (
+            <button
+              key={item.href}
+              onClick={() => scrollToSection(item.href)}
+              className="text-sm font-medium transition-colors hover:text-primary text-muted-foreground"
+            >
+              {item.name}
+            </button>
+          ))}
+        </nav>
 
         <div className="flex items-center space-x-2">
           <Button
@@ -142,47 +114,29 @@ const Header: React.FC = () => {
               </SheetTrigger>
               <SheetContent side="right" className="w-64">
                 <nav className="flex flex-col space-y-4 mt-8">
-                  {isLandingPage || isEnglishLanding ? (
-                    <>
-                      {landingNavItems.map((item) => (
-                        <button
-                          key={item.href}
-                          onClick={() => scrollToSection(item.href)}
-                          className="text-left px-4 py-2 rounded-lg transition-colors text-foreground hover:bg-accent"
-                        >
-                          {item.name}
-                        </button>
-                      ))}
-                      <hr className="my-4" />
-                      {/* <Button
-                        variant="ghost"
-                        onClick={() => navigate("/login")}
-                        className="justify-start"
-                      >
-                        Login
-                      </Button>
-                      <Button
-                        onClick={() => navigate("/signup")}
-                        className="bg-emerald-600 hover:bg-emerald-700 justify-start"
-                      >
-                        Sign Up
-                      </Button> */}
-                    </>
-                  ) : (
-                    appNavItems.map((item) => (
-                      <button
-                        key={item.path}
-                        onClick={() => navigate(item.path)}
-                        className={`text-left px-4 py-2 rounded-lg transition-colors ${
-                          isActive(item.path)
-                            ? "bg-primary text-primary-foreground"
-                            : "text-foreground hover:bg-accent"
-                        }`}
-                      >
-                        {item.name}
-                      </button>
-                    ))
-                  )}
+                  {landingNavItems.map((item) => (
+                    <button
+                      key={item.href}
+                      onClick={() => scrollToSection(item.href)}
+                      className="text-left px-4 py-2 rounded-lg transition-colors text-foreground hover:bg-accent"
+                    >
+                      {item.name}
+                    </button>
+                  ))}
+                  <hr className="my-4" />
+                  {/* <Button
+                    variant="ghost"
+                    onClick={() => navigate("/login")}
+                    className="justify-start"
+                  >
+                    Login
+                  </Button>
+                  <Button
+                    onClick={() => navigate("/signup")}
+                    className="bg-emerald-600 hover:bg-emerald-700 justify-start"
+                  >
+                    Sign Up
+                  </Button> */}
                 </nav>
               </SheetContent>
             </Sheet>

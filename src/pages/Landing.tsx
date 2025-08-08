@@ -6,7 +6,6 @@ import LandingTestimonials from "@/components/home/Testimonial";
 import LandingPricing from "@/components/home/pricing";
 import LandingFAQ from "@/components/home/Faq";
 import LandingCTA from "@/components/home/CTA";
-import AccountDeletion from "@/components/Shared/AccountDeletion";
 import Hero from "@/components/home/Hero";
 import Footer from "@/components/Shared/Footer";
 
@@ -22,14 +21,7 @@ const Landing: React.FC = () => {
       <LandingFAQ />
       <LandingCTA />
 
-      {/* Account Deletion Section */}
-      <section className="py-12 bg-gray-50 dark:bg-gray-800">
-        <div className="max-w-2xl mx-auto px-4">
-          <AccountDeletion />
-        </div>
-      </section>
-
-    <Footer/>
+      <Footer />
     </div>
   );
 };

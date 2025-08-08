@@ -2,7 +2,7 @@
   "welcome": "Welcome",
   "description": "This is an English description.",
   "hero": {
-    "rating": "Rated 4.8/5 by 10,000+ users",
+    "rating": "Rated 4.8/5 by 1000+ users",
     "title": "Track Your",
     "titleHighlight": "Finances",
     "subtitle": "Bangladesh's first AI-powered Bengali expense tracker. Track your money, understand your spending, and build better financial habits with intelligent insights.",
@@ -106,15 +106,15 @@
     "subtitle": "Thousands of users have already achieved their financial goals with Hishab",
     "items": [
       {
-        "value": "50,000+",
+        "value": "500+",
         "label": "Active Users"
       },
       {
-        "value": "$50M+",
+        "value": "$1000+",
         "label": "Money Tracked"
       },
       {
-        "value": "85%",
+        "value": "95%",
         "label": "Improved Savings"
       },
       {
@@ -145,7 +145,7 @@
       },
       {
         "name": "Pro",
-        "price": "৳ 299",
+        "price": "৳ 99",
         "period": "per month",
         "description": "Advanced features for serious money management",
         "features": [
@@ -162,7 +162,7 @@
       },
       {
         "name": "Family",
-        "price": "৳ 499",
+        "price": "৳ 199",
         "period": "per month",
         "description": "Complete financial management for the whole family",
         "features": [
@@ -249,6 +249,7 @@
       "features": "Features",
       "pricing": "Pricing",
       "faq": "FAQ",
+      "account-delete": "Account Deletion",
       "dashboard": "Dashboard",
       "transactions": "Transactions",
       "profile": "Profile"
@@ -265,6 +266,80 @@
     "emailSent": {
       "title": "Confirmation Email Sent",
       "description": "Check your email and click the confirmation link to delete your account."
+    }
+  },
+  "privacyPolicy": {
+    "title": "Privacy Policy for Hishab",
+    "lastUpdated": "Last updated: August 7, 2025",
+    "introduction": "Welcome to Hishab, a smart and simple AI-powered expense tracker. Your privacy is very important to us. This Privacy Policy explains what information we collect, how we use it, and what choices you have regarding your data.",
+    "agreementNote": "By using the Hishab mobile app, you agree to the practices described in this policy.",
+    "sections": {
+      "whatWeCollect": {
+        "title": "1. What We Collect",
+        "description": "When you use Hishab, we may collect the following types of information:",
+        "items": {
+          "accountInfo": {
+            "title": "Account Information",
+            "description": "When you sign up or log in, we collect your email address for authentication and to associate your data."
+          },
+          "financialEntries": {
+            "title": "Financial Entries",
+            "description": "The expenses or income you enter are stored securely in your user account in our backend."
+          },
+          "appUsageData": {
+            "title": "App Usage Data",
+            "description": "We may collect non-personal data such as the version of the app you're using or error logs to improve the app's stability and performance."
+          }
+        },
+        "note": "We do not collect or store any sensitive personal information (like your bank info or address) unless you explicitly provide it in a prompt — and even then, it remains private and securely stored."
+      },
+      "howWeUseData": {
+        "title": "2. How We Use Your Data",
+        "description": "We use your data for the following purposes:",
+        "items": [
+          "To store and display your income and expense records",
+          "To filter and categorize your financial data according to your usage",
+          "To provide app features such as data export (PDF)",
+          "To improve the performance, security, and reliability of Hishab"
+        ],
+        "note": "We do not use your data for advertising or sell it to third parties."
+      },
+      "dataStorageSecurity": {
+        "title": "3. Data Storage and Security",
+        "description": "We use Supabase, a secure backend service, to store your data. All communication between the app and the backend is encrypted via HTTPS.",
+        "note": "Your data is stored in a private user-specific database. Only you can access your personal financial data using your account credentials."
+      },
+      "accountDeletionRights": {
+        "title": "4. Account Deletion and Your Rights",
+        "description": "You have full control over your data.",
+        "items": [
+          "At any time, you can choose to delete your account directly from the app.",
+          "This action will permanently delete all your records from our system — we do not retain a backup once deletion is confirmed."
+        ]
+      },
+      "thirdPartyServices": {
+        "title": "5. Third-Party Services",
+        "description": "We do not integrate any third-party advertising, analytics, or tracking SDKs at this time. However, this may change in future updates, in which case this policy will be updated and you'll be notified."
+      },
+      "childrensPrivacy": {
+        "title": "6. Children's Privacy",
+        "description": "Hishab is not intended for children under the age of 13. We do not knowingly collect data from anyone under 13 years old. If we discover that we've collected data from a minor without parental consent, we will delete it."
+      },
+      "policyChanges": {
+        "title": "7. Changes to This Policy",
+        "description": "We may update this Privacy Policy from time to time. If we make significant changes, we will notify you in the app or on our website.",
+        "note": "The date at the top of this page reflects the latest revision."
+      },
+      "contactUs": {
+        "title": "8. Contact Us",
+        "description": "If you have any questions, concerns, or feedback about this Privacy Policy or how your data is handled, feel free to reach out:",
+        "email": "Email: contact@hishab.app",
+        "website": "Website: https://hishab.app"
+      }
+    },
+    "closingMessage": {
+      "title": "Thanks for trusting Hishab to manage your finances.",
+      "subtitle": "We're committed to protecting your privacy as you take control of your spending. 💙"
     }
   }
 }

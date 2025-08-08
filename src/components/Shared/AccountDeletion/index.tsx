@@ -4,7 +4,6 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Trash2, Mail, AlertTriangle } from "lucide-react";
 import { toast } from "sonner";
-import { supabase } from "@/integrations/supabase/client";
 
 const AccountDeletion: React.FC = () => {
   const { t } = useTranslation();
@@ -28,30 +27,49 @@ const AccountDeletion: React.FC = () => {
     setIsLoading(true);
 
     try {
-      // Call the Supabase Edge Function to send confirmation email
-      const { data, error } = await supabase.functions.invoke(
-        "delete-user-account",
-        {
-          body: {
-            email: email,
-            action: "send_confirmation",
-          },
-        }
-      );
+      // Call the API to send confirmation email via proxy
+      const apiUrl =
+        process.env.NODE_ENV === "development"
+          ? "/api/request-delete-by-email"
+          : "https://api.hishab.app/request-delete-by-email";
 
-      if (error) {
-        console.error("Error sending confirmation email:", error);
+      const response = await fetch(apiUrl, {
+        method: "POST",
+        headers: {
+          accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: email,
+        }),
+      });
+
+      if (response.status === 422) {
+        // Handle validation error
+        const errorData = await response.json();
+        const errorMessage =
+          errorData.detail?.[0]?.msg || "Invalid email format";
+        toast.error(errorMessage);
+        return;
+      }
+
+      if (!response.ok) {
+        console.error("Error sending confirmation email:", response.statusText);
         toast.error("Failed to send confirmation email. Please try again.");
         return;
       }
+
+      // Handle successful response (200)
+      const responseData = await response.json();
+      console.log("Delete request submitted successfully:", responseData);
 
       // Show success message
       toast.success(t("accountDeletion.successMessage"));
       setIsSubmitted(true);
       setEmail("");
     } catch (error) {
-      console.error("Error:", error);
-      toast.error("Failed to send confirmation email. Please try again.");
+      console.error("Network error:", error);
+      toast.error("Network error. Please check your connection and try again.");
     } finally {
       setIsLoading(false);
     }
