@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 const Footer: React.FC = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const currentYear = new Date().getFullYear();
 
   // Get footer data from translations
   const productLinks = t("footer.sections.product.links", {
@@ -35,7 +36,7 @@ const Footer: React.FC = () => {
             <p className="text-gray-500 dark:text-gray-400 leading-relaxed">
               {t("footer.brand.description")}
             </p>
-            <div className="flex space-x-4">
+            {/* <div className="flex space-x-4">
               <a
                 href="#"
                 className="w-10 h-10 dark:bg-gray-800 bg-gray-200 rounded-lg flex items-center justify-center border border-emerald-600 text-emerald-600 hover:text-white hover:bg-emerald-600 transition-colors"
@@ -54,7 +55,7 @@ const Footer: React.FC = () => {
               >
                 <span>in</span>
               </a>
-            </div>
+            </div> */}
           </div>
 
           {/* Product */}
@@ -119,7 +120,7 @@ const Footer: React.FC = () => {
 
         <div className="border-t dark:border-gray-50 border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
           <p className="text-gray-500 dark:text-gray-400">
-            {t("footer.bottom.copyright")}
+            © {currentYear} Hishab. {t("footer.bottom.copyright")}
           </p>
           <div className="flex space-x-6 mt-4 md:mt-0">
             <button
