@@ -27,11 +27,11 @@ const AccountDeletion: React.FC = () => {
     setIsLoading(true);
 
     try {
-      // Call the API to send confirmation email via proxy
-      const apiUrl =
-        process.env.NODE_ENV === "development"
-          ? "/api/request-delete-by-email"
-          : "https://api.hishab.app/request-delete-by-email";
+      // Determine the API URL based on environment
+      const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+      const apiUrl = isLocalhost 
+        ? "/api/request-delete-by-email"  // Use Vite proxy in development
+        : "/api/request-delete-by-email"; // Use relative URL for production (requires server-side proxy)
 
       const response = await fetch(apiUrl, {
         method: "POST",
